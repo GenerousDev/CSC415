@@ -15,9 +15,9 @@ if (isset($_POST['marticnumber']) && isset($_POST['password']) ) {
 	$password = test_input($_POST['password']);
 
 	if (empty($marticnumber)) {
-		header("Location: ../student-login.php?error=Matric Number is Required");
+		header("Location: ../student/student-login.php?error=Matric Number is Required");
 	}else if (empty($password)) {
-		header("Location: ../student-login.php?error=Password is Required");
+		header("Location: ../student/student-login.php?error=Password is Required");
 	}else {
 
 		// Hashing the password
@@ -33,17 +33,17 @@ if (isset($_POST['marticnumber']) && isset($_POST['password']) ) {
         		$_SESSION['id'] = $row['id'];
         		$_SESSION['marticnumber'] = $row['marticnumber'];
 
-        		header("Location: ../student.php");
+        		header("Location: ../student/student.php");
 
         	}else {
-        		header("Location: ../student-login.php?error=Incorrect Matricnumber or password");
+        		header("Location: ../student/student-login.php?error=Incorrect Matricnumber or password");
         	}
         }else {
-        	header("Location: ../student-login.php?error=Incorrect Matric number or password");
+        	header("Location: ../student/student-login.php?error=Incorrect Matric number or password");
         }
 
 	}
 	
 }else {
-	header("Location: ../student-login.php");
+	header("Location: ../student/student-login.php");
 }

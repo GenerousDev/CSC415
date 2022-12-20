@@ -35,7 +35,7 @@
             </select>
 
             <button type="submit" class="btn btn-primary">LOGIN</button>
-            <a class="btn btn-primary float-end" onclick="location.href='student-login.php'">STUDENT LOGIN</a>
+            <a class="btn btn-primary float-end" onclick="location.href='student/student-login.php'">STUDENT LOGIN</a>
         </form>
 
     </div>

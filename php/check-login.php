@@ -24,8 +24,12 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
 
 		// Hashing the password
 		// $password = md5($password);
-		
-		$sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
+		// if ($row['role'] === "admin") {
+		$sql = "SELECT * FROM adminuser WHERE username='$username' AND password='$password'";
+		// }
+		// else{
+		// 	$sql = "SELECT * FROM examineruser WHERE username='$username' AND password='$password'";
+		// }
 		$result = mysqli_query($conn, $sql);
 		echo mysqli_num_rows($result);
 		if (mysqli_num_rows($result) >= 1) {
@@ -36,9 +40,9 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
 				$_SESSION['role'] = $row['role'];
 				$_SESSION['username'] = $row['username'];
 				if ($row['role'] === "admin") {
-					header("Location: ../admin.php");
+					header("Location: ../adminfile/admin.php");
 				} else {
-					header("Location: ../examiner.php");
+					header("Location: ../examiner/examiner.php");
 				}
 			} else {
 				header("Location: ../welcome.php?error=Incorrect Username or password");
@@ -48,5 +52,5 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
 		}
 	}
 } else {
-	header("Location: ../welcome.php");
+	header("Location: ../home.php");
 }
