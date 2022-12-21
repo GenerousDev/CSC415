@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include "db_conn.php";
 
 if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['matricnumber']) && isset($_POST['password'])) {
@@ -16,6 +16,7 @@ if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['matricn
 	$password = test_input($_POST['password']);
 	$matricnumber = test_input($_POST['matricnumber']);
 	$email = test_input($_POST['email']);
+	$id = test_input($_POST['id']);
 
 	if (empty($fullname)) {
 		header("Location: ../student/createstudentpage.php?error=fullname is Required");
@@ -36,11 +37,13 @@ if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['matricn
 			header("Location: ../adminfile/admin.php?error=Matric Number already exists");
 		}
 
-		$sql = "INSERT INTO studentuser(fullname, email, password, matricnumber) 
-		VALUES('$fullname', '$email','$password', '$matricnumber')";
+		$sql= "UPDATE studentuser
+        SET fullname='$fullname', email='$email', password='$password',matricnumber='$matricnumber'
+        WHERE id=$id";
+
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
-			header("Location: ../adminfile/admin.php?success=Successfully created");
+			header("Location: ../adminfile/admin.php?success=Successfully updated");
 		} else {
 			header("Location: ../student/createstudentpage.php?error=unknown error occurred&$user_data");
 		}

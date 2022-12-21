@@ -15,6 +15,11 @@
                     <?= $_GET['error'] ?>
                 </div>
             <?php } ?>
+            <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $_GET['success']; ?>
+                </div>
+            <?php } ?>
 
             <div class="mb-3">
                 <label for="username" class="form-label">User name</label>

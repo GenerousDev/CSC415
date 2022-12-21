@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include "db_conn.php";
 
 if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
@@ -16,6 +16,7 @@ if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['usernam
 	$password = test_input($_POST['password']);
 	$username = test_input($_POST['username']);
 	$email = test_input($_POST['email']);
+    $id = test_input($_POST['id']);
 
 	if (empty($fullname)) {
 		header("Location: ../examiner/createexaminerpage.php?error=fullname is Required");
@@ -30,11 +31,11 @@ if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['usernam
 		// Hashing the password
 		$password = md5($password);
 
-		$sql = "INSERT INTO examineruser(fullname, email, password,username) 
-		VALUES('$fullname', '$email','$password', '$username')";
+       $sql = "UPDATE examineruser SET fullname='$fullname', email='$email', password='$password',username='$username' WHERE id=$id";
+
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
-			header("Location: ../adminfile/admin.php?success=successfully created");
+			header("Location: ../adminfile/admin.php?success=Successfully Updated");
 		} else {
 			header("Location: ../examiner/createexaminerpage.php?error=unknown error occurred&$user_data");
 		}
