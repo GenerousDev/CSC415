@@ -24,29 +24,43 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
 
 		// Hashing the password
 		// $password = md5($password);
-		
-		$sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
-		$result = mysqli_query($conn, $sql);
-		echo mysqli_num_rows($result);
-		if (mysqli_num_rows($result) >= 1) {
-			// the user name must be unique
-			$row = mysqli_fetch_assoc($result);
-			if ($row['password'] === $password && $row['role'] == $role) {
-				$_SESSION['id'] = $row['id'];
-				$_SESSION['role'] = $row['role'];
-				$_SESSION['username'] = $row['username'];
-				if ($row['role'] === "admin") {
-					header("Location: ../admin.php");
+		if ($_POST['role'] == "admin") {
+			$sql = "SELECT * FROM adminuser WHERE username='$username' AND password='$password'";
+			$result = mysqli_query($conn, $sql);
+			if (mysqli_num_rows($result) == 1) {
+				// the user name must be unique
+				$row = mysqli_fetch_assoc($result);
+				if ($row['password'] === $password && $row['role'] == $role) {
+					$_SESSION['id'] = $row['id'];
+					$_SESSION['role'] = $row['role'];
+					$_SESSION['username'] = $row['username'];
+						header("Location: ../adminfile/admin.php");
 				} else {
-					header("Location: ../examiner.php");
+					header("Location: ../welcome.php?error=Incorrect Username or password");
 				}
 			} else {
-				header("Location: ../welcome.php?error=Incorrect Username or password");
+				header("Location: ../welcome.php?error=Incorrect User name or password");
 			}
 		} else {
-			header("Location: ../welcome.php?error=Incorrect User name or password");
+			$sql = "SELECT * FROM examineruser WHERE username='$username' AND password='$password'";
+			$result = mysqli_query($conn, $sql);
+			if (mysqli_num_rows($result) == 1) {
+				// the user name must be unique
+				$row = mysqli_fetch_assoc($result);
+				if ($row['password'] === $password && $row['role'] == $role) {
+					$_SESSION['id'] = $row['id'];
+					$_SESSION['role'] = $row['role'];
+					$_SESSION['username'] = $row['username'];
+
+						header("Location: ../examiner/examiner.php");
+				} else {
+					header("Location: ../welcome.php?error=Incorrect Username or password");
+				}
+			} else {
+				header("Location: ../welcome.php?error=Incorrect User name or password");
+			}
 		}
 	}
 } else {
-	header("Location: ../welcome.php");
+	header("Location: ../home.php");
 }

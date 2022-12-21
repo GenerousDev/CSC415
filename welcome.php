@@ -15,6 +15,11 @@
                     <?= $_GET['error'] ?>
                 </div>
             <?php } ?>
+            <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $_GET['success']; ?>
+                </div>
+            <?php } ?>
 
             <div class="mb-3">
                 <label for="username" class="form-label">User name</label>
@@ -35,7 +40,7 @@
             </select>
 
             <button type="submit" class="btn btn-primary">LOGIN</button>
-            <a class="btn btn-primary float-end" onclick="location.href='student-login.php'">STUDENT LOGIN</a>
+            <a class="btn btn-primary float-end" onclick="location.href='student/student-login.php'">STUDENT LOGIN</a>
         </form>
 
     </div>

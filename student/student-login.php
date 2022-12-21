@@ -8,7 +8,7 @@
 
     <body>
         <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh">
-            <form class="border shadow p-3 rounded" action="php/check-student.php" method="post" style="width: 450px;">
+            <form class="border shadow p-3 rounded" action="../php/check-student.php" method="post" style="width: 450px;">
                 <h1 class="text-center p-3">STUDENT LOGIN</h1>
                 <?php if (isset($_GET['error'])) { ?>
                     <div class="alert alert-danger" role="alert">
@@ -18,7 +18,7 @@
 
                 <div class="mb-3">
                     <label for="username" class="form-label">Matric Number</label>
-                    <input type="text" class="form-control" name="marticnumber" id="username">
+                    <input type="text" class="form-control" name="matricnumber" id="username">
                 </div>
 
                 <div class="mb-3">
