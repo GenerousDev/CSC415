@@ -38,9 +38,16 @@ if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['matricn
 
 		$sql = "INSERT INTO studentuser(fullname, email, password, matricnumber) 
 		VALUES('$fullname', '$email','$password', '$matricnumber')";
+
+
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
-			header("Location: ../adminfile/admin.php?success=Successfully created");
+			$sqlvalue = "INSERT INTO studentscore( matricnumber) 
+		    VALUES( '$matricnumber')";
+			$resultvalue = mysqli_query($conn, $sqlvalue);
+			if ($resultvalue) {
+				header("Location: ../adminfile/admin.php?success=Student Successfully created");
+			}
 		} else {
 			header("Location: ../student/createstudentpage.php?error=unknown error occurred&$user_data");
 		}

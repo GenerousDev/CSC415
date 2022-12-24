@@ -13,8 +13,3 @@ $id = test_input($_GET['id']);
 $sql = "SELECT * FROM studentuser WHERE id=$id";
 
 $result = mysqli_query($conn, $sql);
-if ($result) {
-    header("Location: ../student/studentdetailpage.php?success=");
-} else {
-    header("Location: ../adminfile/admin.php?error=unknown error occurred&$user_data");
-}

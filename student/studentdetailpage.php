@@ -11,59 +11,68 @@
 </head>
 
 <body class="p-3 m-0 border-0 bd-example bd-example-row">
-    <!-- Example Code -->
-    <label class="form-label d-flex justify-content-center">Student Personal Details</label>
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Full Name:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
-    <br />
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Matric Number:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
-    <br />
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Email:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
+    <?php
+    include "../php/detailsstudent.php";
+    $i = 0;
+    while ($rows = mysqli_fetch_assoc($result)) {
+        $i++;
+    ?>
+        <label class="form-label d-flex justify-content-center">Student Personal Details</label>
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Full Name:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['fullname']; ?></div>
+        </div>
+        <br />
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Matric Number:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['matricnumber']; ?></div>
+        </div>
+        <br />
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Email:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['email']; ?></div>
+        </div>
 
-
-    <label class="form-label d-flex justify-content-center mt-5">Student Project Details</label>
+    <?php } ?>
+    <label class="form-label d-flex justify-content-center mt-5">Student Project Score</label>
     <div class="row g-0 text-center">
         <div class="col-6 col-md-4 label label-default">TOPICS</div>
         <div class="col-sm-6 col-md-8">SCORE</div>
     </div>
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Analysis:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
-    <br />
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Methodology:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
-    <br />
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Literature:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Abstract:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
-    <br />
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Conclusion:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
-    <div class="row g-0 text-center">
-        <div class="col-6 col-md-4 label label-default">Total:</div>
-        <div class="col-sm-6 col-md-8">.col-6 .col-md-4</div>
-    </div>
-
-
-
+    <?php
+    include "../php/getscore.php";
+    $i = 0;
+    while ($rows = mysqli_fetch_assoc($result)) {
+        $i++;
+    ?>
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Analysis:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['analysisScore']; ?></div>
+        </div>
+        <br />
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Methodology:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['methodologyScore']; ?></div>
+        </div>
+        <br />
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Literature:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['literatureScore']; ?></div>
+        </div>
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Abstract:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['abstractScore']; ?></div>
+        </div>
+        <br />
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Conclusion:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['conclusionScore']; ?></div>
+        </div>
+        <div class="row g-0 text-center">
+            <div class="col-6 col-md-4 label label-default">Total:</div>
+            <div class="col-sm-6 col-md-8"><?php echo $rows['conclusionScore'] + $rows['abstractScore'] + $rows['literatureScore'] + $rows['methodologyScore'] + $rows['analysisScore']; ?></div>
+        </div>
+    <?php } ?>
     <!-- End Example Code -->
 </body>
 
