@@ -12,13 +12,6 @@
 
 <Body>
     <div class="container">
-        <!-- <div class="row content"> -->
-        <!-- <div class="col-sm-2">
-                &nbsp;
-            </div> -->
-            <!-- <?php
-            // if $_SESSION
-            ?> -->
         <div class="text-left ">
             <br />
             <h2 align="center"> Student Submission Dashboard </h3>
@@ -60,7 +53,7 @@
                     </div> -->
 
 
-                    <label for="formGroupExampleInput" class="form-label">Conclution</label>
+                    <label for="formGroupExampleInput" class="form-label">Conclusion</label>
                     <div class="mb-3 form-floating">
                         <textarea maxlength="400" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="conclusion"></textarea>
                         <label for="floatingTextarea">400 words maximum</label>

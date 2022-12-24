@@ -15,7 +15,11 @@
                         <?= $_GET['error'] ?>
                     </div>
                 <?php } ?>
-
+                <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $_GET['success']; ?>
+                </div>
+            <?php } ?>
                 <div class="mb-3">
                     <label for="username" class="form-label">Matric Number</label>
                     <input type="text" class="form-control" name="matricnumber" id="username">
@@ -27,6 +31,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">LOGIN</button>
+                <a class="btn btn-primary float-end mb-5" onclick="location.href='../welcome.php'">LOGOUT</a>
             </form>
         </div>
     </body>

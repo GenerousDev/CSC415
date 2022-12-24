@@ -48,8 +48,9 @@
                                 <td><?php echo $rows['email']; ?></td>
                                 <td><?php echo $rows['matricnumber']; ?></td>
                                 <td>
-                                    <a href="../student/studentupdate.php?id=<?= $rows['id'] ?>" class="btn btn-success">Update</a>
-                                    <a href="../php/detailsstudent.php?id=<?= $rows['id'] ?>" class="btn btn-secondary">Details</a>
+                                <!-- href="../student/studentupdate.php?matricnumber=<?= $rows['matricnumber'] ?>&id=<?= $rows['id'] ?>" -->
+                                    <a class="btn btn-success">Update</a>
+                                    <a href="../student/studentdetailpage.php?matricnumber=<?= $rows['matricnumber'] ?>&id=<?= $rows['id'] ?>" class="btn btn-secondary">Details</a>
                                     <!-- href="../php/deletestudent.php?id=<?= $rows['id'] ?>" -->
                                     <a class="btn btn-danger">Delete</a>
                                 </td>
@@ -92,7 +93,7 @@
                     <tbody>
                         <?php
                         $i = 0;
-                        while ($rows = mysqli_fetch_assoc($result)) {
+                        while ($rows = mysqli_fetch_assoc($results)) {
                             $i++;
                         ?>
                             <tr>
@@ -100,7 +101,9 @@
                                 <td><?php echo $rows['fullname']; ?></td>
                                 <td><?php echo $rows['email']; ?></td>
                                 <td><?php echo $rows['username']; ?></td>
-                                <td><a href="../examiner/examinerupdate.php?id=<?= $rows['id'] ?>" class="btn btn-success">Update</a>
+                                <td>
+                                <!-- href="../examiner/examinerupdate.php?id=<?= $rows['id'] ?>" -->
+                                    <a  class="btn btn-success">Update</a>
                                     <!-- href="../php/detailsexaminer.php?id=<?= $rows['id'] ?>" -->
                                     <a class="btn btn-secondary">Details</a>
                                     <a href="../php/deleteexaminer.php?id=<?= $rows['id'] ?>" class="btn btn-danger">Delete</a>

@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 include "db_conn.php";
 
 if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])) {
@@ -16,7 +16,8 @@ if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['usernam
 	$password = test_input($_POST['password']);
 	$username = test_input($_POST['username']);
 	$email = test_input($_POST['email']);
-    $id = test_input($_POST['id']);
+	$id = test_input($_POST['id']);
+	$role = "examiner";
 
 	if (empty($fullname)) {
 		header("Location: ../examiner/createexaminerpage.php?error=fullname is Required");
@@ -31,7 +32,9 @@ if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['usernam
 		// Hashing the password
 		$password = md5($password);
 
-       $sql = "UPDATE examineruser SET fullname='$fullname', email='$email', password='$password',username='$username' WHERE id=$id";
+		$sql = "UPDATE examineruser 
+		SET fullname='$fullname', email='$email', password='$password',username='$username',role='$role'
+	    WHERE id=$id";
 
 		$result = mysqli_query($conn, $sql);
 		if ($result) {

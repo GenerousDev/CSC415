@@ -21,10 +21,11 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
 	} else if (empty($password)) {
 		header("Location: ../welcome.php?error=Password is Required");
 	} else {
-
+// ! HASHED FOR ADMIN BUT HASHED FOR EXAMINER
 		// Hashing the password
-		// $password = md5($password);
+		
 		if ($_POST['role'] == "admin") {
+			// $password = md5($password);
 			$sql = "SELECT * FROM adminuser WHERE username='$username' AND password='$password'";
 			$result = mysqli_query($conn, $sql);
 			if (mysqli_num_rows($result) == 1) {
@@ -34,30 +35,31 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
 					$_SESSION['id'] = $row['id'];
 					$_SESSION['role'] = $row['role'];
 					$_SESSION['username'] = $row['username'];
-						header("Location: ../adminfile/admin.php");
+					header("Location: ../adminfile/admin.php");
 				} else {
 					header("Location: ../welcome.php?error=Incorrect Username or password");
 				}
 			} else {
-				header("Location: ../welcome.php?error=Incorrect User name or password");
+				header("Location: ../welcome.php?error=Incorrect User name or password for admin");
 			}
-		} else {
+		} else if($_POST['role'] == "examiner") {
+			$password = md5($password);
 			$sql = "SELECT * FROM examineruser WHERE username='$username' AND password='$password'";
 			$result = mysqli_query($conn, $sql);
 			if (mysqli_num_rows($result) == 1) {
 				// the user name must be unique
 				$row = mysqli_fetch_assoc($result);
-				if ($row['password'] === $password && $row['role'] == $role) {
+				if ($row['password'] === $password) {
 					$_SESSION['id'] = $row['id'];
 					$_SESSION['role'] = $row['role'];
 					$_SESSION['username'] = $row['username'];
 
-						header("Location: ../examiner/examiner.php");
+					header("Location: ../examiner/examiner.php");
 				} else {
 					header("Location: ../welcome.php?error=Incorrect Username or password");
 				}
 			} else {
-				header("Location: ../welcome.php?error=Incorrect User name or password");
+				header("Location: ../welcome.php?error=Incorrect User name or password for examiner");
 			}
 		}
 	}
